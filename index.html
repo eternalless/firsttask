@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点赞+1</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="./scripts/thumb.es.js"></script>-->
+    <style>
+        .aa {
+            border-width: 3px;
+            border-color: rgb( 5, 0, 1 );
+            border-style: solid;
+            position: absolute;
+            left: 369px;
+            top: 260px;
+            width: 94px;
+            height: 94px;
+            z-index: 2;
+        }
+        .bb{
+            opacity: 0;
+        }
+        .ee{
+            border-color: rgb( 0, 253, 254 );
+        }
+        .cc .bb{
+
+            position:relative;
+            opacity: 0;
+            -webkit-animation:mymove 1s , mymove2 1s infinite; /*Safari and Chrome*/
+            -webkit-animation-iteration-count:1; /* Safari 和 Chrome */
+        }
+        @-webkit-keyframes mymove /*Safari and Chrome*/
+        {
+            from {left:0px;}
+            to {
+                left:200px;
+
+            }
+        }
+        @-webkit-keyframes mymove2 /*Safari and Chrome*/
+        {
+            from {opacity: 1;}
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="aa" id="dd">
+    我是大拇指
+    <div class="bb">+1</div>
+</div>
+</body>
+<!--<script src="./scripts/index.es.js"></script>-->
+<!--使用systemjs-->
+<script src="./scripts/system.js"></script>
+<script>
+//    System.config({
+//        transplier: 'babel',
+//        baseURL:'./scripts'
+//    });
+    SystemJS.import('./scripts/index.es.js').then(function (m) {
+        console.log(m);
+        $.extend({
+            thumb: m.Thumb
+        })
+        addone();
+    });
+    function addone() {
+        var a=new $.thumb($('#dd'),0)
+        a.addOne()
+    }
+</script>
+</html>
